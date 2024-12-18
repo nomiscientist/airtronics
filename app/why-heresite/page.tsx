@@ -17,7 +17,7 @@ export default function WhyHeresite() {
           </p>
           <p className="text-gray-600 dark:text-gray-400">
             Our coatings are specifically designed to withstand the harshest environments, from coastal areas with high 
-            salt content to industrial settings with aggressive chemicals. When you choose Heresite, you're choosing a 
+            salt content to industrial settings with aggressive chemicals. When you choose Heresite, you&apos;re choosing a 
             legacy of excellence and proven performance.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function WhyHeresite() {
             <li>ASTM D3363 Pencil Hardness: 2B</li>
           </ul>
           <p className="mt-4 text-gray-600 dark:text-gray-400">
-            These specifications demonstrate Heresite's commitment to providing high-performance coatings that meet and exceed industry standards.
+            These specifications demonstrate Heresite&apos;s commitment to providing high-performance coatings that meet and exceed industry standards.
           </p>
         </div>
       </section>

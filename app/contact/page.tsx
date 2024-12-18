@@ -24,15 +24,13 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500))
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
-      // Reset status after 3 seconds
       setTimeout(() => setSubmitStatus('idle'), 3000)
     }
   }
@@ -67,7 +65,7 @@ export default function Contact() {
           Contact Us
         </h1>
         <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
-          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">

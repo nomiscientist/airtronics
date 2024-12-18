@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import hvac from '@/assets/HVAC-Coating_1.jpg'
 import marine from '@/assets/Marine-Protective.jpg'
@@ -6,7 +6,15 @@ import coastal from '@/assets/powder-coating-process_1.jpg'
 import specialized from '@/assets/SpecializedCoatings-retouched.jpg'
 import product from '@/assets/hvac-coating-testimonial.jpg'
 
-const ProductCard = ({ title, description, imageUrl, link }) => (
+// Define interface for ProductCard props
+interface ProductCardProps {
+  title: string;
+  description: string;
+  imageUrl: StaticImageData;
+  link: string;
+}
+
+const ProductCard = ({ title, description, imageUrl, link }: ProductCardProps) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
     <Image src={imageUrl} alt={title} width={400} height={300} className="w-full h-48 object-cover" />
     <div className="p-6">
@@ -17,8 +25,16 @@ const ProductCard = ({ title, description, imageUrl, link }) => (
   </div>
 )
 
+// Define interface for product items
+interface Product {
+  title: string;
+  description: string;
+  imageUrl: StaticImageData;
+  link: string;
+}
+
 export default function Products() {
-  const products = [
+  const products: Product[] = [
     {
       title: "HVAC/R Coatings",
       description: "Ideal for heat exchangers, coils, and other HVAC components, providing exceptional corrosion resistance and extending equipment life.",

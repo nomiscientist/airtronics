@@ -39,11 +39,11 @@ export default function About() {
       <div className="mb-16">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Our Mission</h2>
         <blockquote className="border-l-4 border-blue-500 pl-4 py-2 mb-4 italic text-gray-600 dark:text-gray-400">
-          "To deliver premium corrosion protection solutions, ensuring durability and reliability in every sector we serve."
+          &ldquo;To deliver premium corrosion protection solutions, ensuring durability and reliability in every sector we serve.&rdquo;
         </blockquote>
         <p className="text-gray-600 dark:text-gray-400">
           At AirTronics, we are committed to providing cutting-edge protective coating solutions that not only meet but exceed 
-          our clients' expectations. We strive to be at the forefront of innovation, continuously improving our products and 
+          our clients&apos; expectations. We strive to be at the forefront of innovation, continuously improving our products and 
           services to address the evolving needs of industries in Pakistan and beyond.
         </p>
       </div>
