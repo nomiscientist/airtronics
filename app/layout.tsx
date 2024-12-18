@@ -20,7 +20,9 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
         <Header />
         <main className="min-h-screen">
-          {children}
+          <div className="fade-in opacity-0">
+            {children}
+          </div>
         </main>
         <Footer />
       </body>
