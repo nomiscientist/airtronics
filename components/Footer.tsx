@@ -71,7 +71,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div>
-            <h2 className="text-2xl font-bold text-white mb-4">AirTronics</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">AirTronics Engineering Ltd</h2>
             <p className="mb-6 text-gray-400">
               Innovative Corrosion Protection for a Sustainable Future
             </p>
