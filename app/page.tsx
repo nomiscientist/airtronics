@@ -1,11 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
 import Clients from '@/components/Clients'
 import wallpaper from '@/assets/industrial-background-1920-x-1080-c098arg81f5juqke.jpg'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'AirTronics - Innovative Corrosion Protection',
