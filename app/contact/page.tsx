@@ -1,84 +1,194 @@
 'use client'
 
 import { useState } from 'react'
+import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prevState => ({ ...prevState, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData)
-    // Reset form after submission
-    setFormData({ name: '', email: '', message: '' })
+    setIsSubmitting(true)
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus('idle'), 3000)
+    }
   }
 
+  const contactInfo = [
+    {
+      icon: <Phone className="w-5 h-5" />,
+      title: "Call Us",
+      details: ["+92-XXX-XXXXXXX", "+92-XXX-XXXXXXX"],
+    },
+    {
+      icon: <Mail className="w-5 h-5" />,
+      title: "Email Us",
+      details: ["info@airtronics.pk", "support@airtronics.pk"],
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      title: "Visit Us",
+      details: ["AirTronics Office,", "Street XYZ, Karachi, Pakistan"],
+    },
+    {
+      icon: <Clock className="w-5 h-5" />,
+      title: "Business Hours",
+      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM"],
+    },
+  ]
+
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-gray-100">Contact Us</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Get in Touch</h2>
-          <p className="mb-4 text-gray-600 dark:text-gray-400">We're here to answer your questions and provide solutions tailored to your needs. Contact us today to learn more about our products and services.</p>
-          <ul className="space-y-2">
-            <li><strong>Phone:</strong> +92-XXX-XXXXXXX</li>
-            <li><strong>Email:</strong> info@airtronics.pk</li>
-            <li><strong>Address:</strong> AirTronics Office, Street XYZ, Karachi, Pakistan</li>
-          </ul>
+    <div className="container mx-auto px-4 py-24">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-bold mb-2 text-center text-gray-900 dark:text-gray-100">
+          Contact Us
+        </h1>
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+        </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {contactInfo.map((info, index) => (
+            <div 
+              key={info.title}
+              className={`p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300
+                ${index === contactInfo.length - 1 ? 'lg:col-span-1' : ''}`}
+            >
+              <div className="flex items-center mb-4">
+                <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-full mr-3">
+                  {info.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  {info.title}
+                </h3>
+              </div>
+              {info.details.map((detail, i) => (
+                <p key={i} className="text-gray-600 dark:text-gray-400 ml-11">
+                  {detail}
+                </p>
+              ))}
+            </div>
+          ))}
         </div>
-        
-        <div>
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Inquiry Form</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
+
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+            Send Us a Message
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 transition-colors duration-200"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 transition-colors duration-200"
+                />
+              </div>
+            </div>
             <div>
-              <label htmlFor="name" className="block mb-1">Name</label>
+              <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                Subject
+              </label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="subject"
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 transition-colors duration-200"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block mb-1">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block mb-1">Message</label>
+              <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                rows={4}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                rows={6}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent dark:bg-gray-700 transition-colors duration-200"
               ></textarea>
             </div>
-            <button type="submit" className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Submit
-            </button>
+            <div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`flex items-center justify-center w-full md:w-auto px-6 py-3 rounded-lg text-white font-semibold
+                  ${isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600'}
+                  transition-colors duration-200`}
+              >
+                {isSubmitting ? (
+                  <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5 mr-2" />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </div>
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className="p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg">
+                Message sent successfully! We'll get back to you soon.
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-lg">
+                There was an error sending your message. Please try again.
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -1,10 +1,21 @@
+import './globals.css'
+import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+import Clients from '../components/Clients' // Import the Clients component
 import wallpaper from '@/assets/industrial-background-1920-x-1080-c098arg81f5juqke.jpg'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'AirTronics - Innovative Corrosion Protection',
+  description: 'Exclusive Distributor of Heresite Protective Coatings in Pakistan',
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`${inter.className} bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col min-h-screen`}>
+      <main className="flex-grow">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center text-white">
         <Image
@@ -23,8 +34,8 @@ export default function Home() {
           <p className="text-xl md:text-2xl mb-8 text-gray-100 drop-shadow-lg">
             Exclusive Distributor of Heresite Protective Coatings in Pakistan
           </p>
-          <Link 
-            href="/products" 
+            <Link 
+              href="/products" 
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-200 inline-block"
           >
             Learn More About Heresite Coatings
@@ -37,7 +48,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">About AirTronics</h2>
           <p className="text-xl text-center mb-8">
-            AirTronics is the exclusive distributor of Heresite Protective Coatings in Pakistan, 
+              AirTronics is the exclusive distributor of Heresite Protective Coatings in Pakistan, 
             bringing world-class corrosion protection solutions to various industries.
           </p>
           <div className="flex justify-center">
@@ -55,20 +66,28 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Heat and Corrosion Resistance</h3>
-              <p className="text-gray-600 dark:text-gray-400">Our coatings provide exceptional protection against extreme temperatures and corrosive environments.</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Our coatings provide exceptional protection against extreme temperatures and corrosive environments.
+                </p>
             </div>
             <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Long-lasting Durability</h3>
-              <p className="text-gray-600 dark:text-gray-400">Heresite coatings are engineered to withstand the test of time, reducing maintenance costs.</p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Global Standard in Protective Coatings</h3>
-              <p className="text-gray-600 dark:text-gray-400">Trusted worldwide for their superior quality and performance in various industries.</p>
-            </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Long-lasting Durability</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Heresite coatings are engineered to withstand the test of time, reducing maintenance costs.
+                </p>
           </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Global Standard in Protective Coatings</h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Trusted worldwide for their superior quality and performance in various industries.
+                </p>
         </div>
-      </section>
+    </div>
+          </div>
+        </section>
+      </main>
+      {/* Add the Clients component here */}
+      <Clients />
     </div>
   )
 }
-
