@@ -2,7 +2,7 @@
 
 import PageWrapper from '@/components/PageWrapper'
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Send } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -25,24 +25,22 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
-      const recipients = [
-        {
-          name: "Kashif Ali",
-          title: "Head of Sales and Technical",
-          email: "sales@airtronics.com.pk"
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          name: "Haider",
-          title: "Head of Commercial",
-          email: "commercial@airtronics.com.pk"
-        }
-      ]
+        body: JSON.stringify(formData),
+      })
 
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch {
+    } catch (error) {
+      console.error('Contact form error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

@@ -3,7 +3,6 @@
 import PageWrapper from '@/components/PageWrapper'
 import { useState } from 'react'
 import { Send } from 'lucide-react'
-import Link from 'next/link'
 
 interface FormData {
   firstName: string
@@ -51,25 +50,17 @@ export default function QuotationForm() {
     setIsSubmitting(true)
     
     try {
-      // In a real implementation, you would send emails to both contacts
-      const recipients = [
-        {
-          name: "Kashif Ali",
-          title: "Head of Sales and Technical",
-          email: "sales@airtronics.com.pk"
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          name: "Haider",
-          title: "Head of Commercial",
-          email: "commercial@airtronics.com.pk"
-        }
-      ]
+        body: JSON.stringify(formData),
+      })
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Here you would typically make API calls to send emails to both recipients
-      // await Promise.all(recipients.map(recipient => sendEmail(recipient, formData)))
+      if (!response.ok) {
+        throw new Error('Failed to send quotation request')
+      }
       
       setSubmitStatus('success')
       setFormData({
@@ -77,7 +68,8 @@ export default function QuotationForm() {
         streetAddress: '', addressLine2: '', city: '', stateProvince: '',
         zipCode: '', country: '', projectType: '', projectDescription: ''
       })
-    } catch {
+    } catch (error) {
+      console.error('Quotation form error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
