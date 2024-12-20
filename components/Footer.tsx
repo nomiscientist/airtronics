@@ -36,17 +36,17 @@ export default function Footer() {
   const contactInfo = [
     {
       icon: <Phone className="h-5 w-5" />,
-      text: '+92-XXX-XXXXXXX',
-      href: 'tel:+92XXXXXXXXXX',
+      text: '+92 335 2869956 / +92 300 2241481',
+      href: 'tel:+923352869956',
     },
     {
       icon: <Mail className="h-5 w-5" />,
-      text: 'info@airtronics.pk',
-      href: 'mailto:info@airtronics.pk',
+      text: 'info@airtronics.com.pk',
+      href: 'mailto:info@airtronics.com.pk',
     },
     {
       icon: <MapPin className="h-5 w-5" />,
-      text: 'Karachi, Pakistan',
+      text: 'Suit #614, 6th Floor Anum Blessing, SMCHU Block 7/8 Shahrah e Faisal Karachi, Pakistan',
       href: 'https://maps.google.com',
     },
   ]

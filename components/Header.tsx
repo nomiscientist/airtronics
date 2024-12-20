@@ -31,6 +31,7 @@ export default function Header() {
     { name: 'Products', href: '/products' },
     { name: 'Industries', href: '/industries' },
     { name: 'Why Heresite', href: '/why-heresite' },
+    { name: 'Get Quote', href: '/quote' },
     { name: 'Contact', href: '/contact' },
   ]
 

@@ -25,7 +25,21 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
+      const recipients = [
+        {
+          name: "Kashif Ali",
+          title: "Head of Sales and Technical",
+          email: "sales@airtronics.com.pk"
+        },
+        {
+          name: "Haider",
+          title: "Head of Commercial",
+          email: "commercial@airtronics.com.pk"
+        }
+      ]
+
       await new Promise(resolve => setTimeout(resolve, 1500))
+      
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch {
@@ -39,23 +53,35 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: <Phone className="w-5 h-5" />,
-      title: "Call Us",
-      details: ["+92-XXX-XXXXXXX", "+92-XXX-XXXXXXX"],
+      title: "Sales & Technical",
+      details: [
+        "Kashif Ali - Head of Sales",
+        "+92 335 2869956",
+        "sales@airtronics.com.pk"
+      ],
+    },
+    {
+      icon: <Phone className="w-5 h-5" />,
+      title: "Commercial",
+      details: [
+        "Haider - Head of Commercial",
+        "+92 300 2241481",
+        "commercial@airtronics.com.pk"
+      ],
     },
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email Us",
-      details: ["info@airtronics.pk", "support@airtronics.pk"],
+      details: ["info@airtronics.com.pk"],
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Visit Us",
-      details: ["AirTronics Office,", "Street XYZ, Karachi, Pakistan"],
-    },
-    {
-      icon: <Clock className="w-5 h-5" />,
-      title: "Business Hours",
-      details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 2:00 PM"],
+      details: [
+        "Suit #614, 6th Floor Anum Blessing,",
+        "SMCHU Block 7/8 Shahrah e Faisal",
+        "Karachi, Pakistan"
+      ],
     },
   ]
 
@@ -181,7 +207,7 @@ export default function Contact() {
               {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg">
-                  Message sent successfully! We'll get back to you soon.
+                  Message sent successfully! Our Sales and Commercial teams will review your message and get back to you soon.
                 </div>
               )}
               {submitStatus === 'error' && (
