@@ -46,7 +46,7 @@ export default function Footer() {
     },
     {
       icon: <MapPin className="h-5 w-5" />,
-      text: 'Suit #614, 6th Floor Anum Blessing, SMCHU Block 7/8 Shahrah e Faisal Karachi, Pakistan',
+      text: 'Karachi, Pakistan',
       href: 'https://maps.google.com',
     },
   ]
@@ -112,8 +112,19 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-400">
-              © {currentYear} AirTronics Engineering Ltd. All rights reserved.
+            <div className="text-sm text-gray-400 flex flex-col md:flex-row items-center space-y-2 md:space-y-0">
+              <span>© {currentYear} AirTronics Engineering Ltd. All rights reserved.</span>
+              <span className="md:ml-2 text-gray-600 text-xs">
+                • Powered by{' '}
+                <a 
+                  href="https://seedinov.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-400 transition-colors duration-200"
+                >
+                  Seedinov
+                </a>
+              </span>
             </div>
 
             {/* Social Links */}
